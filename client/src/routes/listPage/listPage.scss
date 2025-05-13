@@ -1,0 +1,57 @@
+@import "../../responsive.scss";
+
+.listPage {
+  display: flex;
+  height: 100%;
+
+  .listContainer {
+    flex: 3;
+    height: 100%;
+
+    .wrapper {
+      height: 100%;
+      padding-right: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      overflow-y: scroll;
+      padding-bottom: 50px;
+
+      .cards {
+        display: flex;
+        flex-wrap: wrap; // Ensures wrapping into rows
+        gap: 20px; // Adds spacing between items
+        justify-content: space-between; // Distributes items evenly
+
+        .card {
+          flex: 1 1 calc(33.33% - 20px); // 3 per row on large screens
+          max-width: calc(33.33% - 20px);
+        }
+
+        @media (max-width: 1024px) {
+          .card {
+            flex: 1 1 calc(50% - 20px); // 2 per row on medium screens
+            max-width: calc(50% - 20px);
+          }
+        }
+
+        @media (max-width: 768px) {
+          .card {
+            flex: 1 1 100%; // 1 per row on small screens
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .mapContainer {
+    flex: 2;
+    height: 100%;
+    background-color: #fcf5f3;
+
+    @include md {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); // Adjust for two per row
+  gap: 20px; // Spacing between cards
+  justify-content: center; // Center align
+  align-items: center;
+
+  .card {
+    width: 100%; // Ensures it adapts to grid size
+    max-width: 350px;
+    height: auto;
+    padding: 10px;
+    font-size: 14px;
+  }
+}
