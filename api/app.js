@@ -19,9 +19,8 @@ const app = express();
 app.use(
   cors({
     origin: [
-      'https://spacekc-ajy7.onrender.com', // Frontend
-      'https://spacekc-ajy7.onrender.com',      // Backend
-      'http://localhost:5173'              // Dev
+      "https://spacekc-ajy7.onrender.com", // Your frontend
+      "http://localhost:5173" // For local dev
     ],
     credentials: true,
   })
