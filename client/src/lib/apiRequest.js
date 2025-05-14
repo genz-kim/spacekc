@@ -1,11 +1,10 @@
 import axios from "axios";
 
-// Dynamically set the base URL based on environment
 const apiRequest = axios.create({
-  baseURL: process.env.NODE_ENV === 'production' 
-    ? "https://spacekc-ajy7.onrender.com/api"  // Production base URL
-    : "http://localhost:8000/api",         // Local development base URL
-  withCredentials: true, // If you need to handle cookies/sessions
+  baseURL: process.env.NODE_ENV === 'production'
+    ? "https://spacekc.onrender.com/api"   // ✅ Actual backend URL on Render
+    : "http://localhost:8000/api",         // ✅ Local backend for dev
+  withCredentials: true, // ✅ Needed for cookies/auth headers
 });
 
 export default apiRequest;
