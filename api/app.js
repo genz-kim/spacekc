@@ -14,24 +14,18 @@ import messageRoute from "./routes/message.route.js";
 import prisma from "./lib/prisma.js";
 
 const app = express();
+// Middleware
 
-const allowedOrigins = [
-  'https://spacekc-ajy7.onrender.com', // ✅ Your frontend
-  'http://localhost:3000',
-  'http://localhost:5173'
-];
-
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin.replace(/\/$/, ''))) {
-      callback(null, true);
-    } else {
-      console.error('Blocked by CORS:', origin);
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: [
+      'https://spacekc-ajy7.onrender.com', // Frontend
+      'https://spacekc.onrender.com',      // Backend
+      'http://localhost:5173'              // Dev
+    ],
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 app.use(cookieParser());
