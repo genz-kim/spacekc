@@ -20,7 +20,7 @@ app.use(
   cors({
     origin: [
       'https://spacekc-ajy7.onrender.com', // Frontend
-      'https://spacekc.onrender.com',      // Backend
+      'https://spacekc-ajy7.onrender.com',      // Backend
       'http://localhost:5173'              // Dev
     ],
     credentials: true,
