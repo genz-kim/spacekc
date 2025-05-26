@@ -20,7 +20,7 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "https://spacekc-ajy7.onrender.com",
+      "https://homes-7oh9.onrender.com",
       "http://localhost:5173"
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
