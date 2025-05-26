@@ -11,7 +11,7 @@ const server = http.createServer(app);
 // Allow connections from localhost during development and from the production URL
 const allowedOrigins = [
   "http://localhost:5173",           // Local development URL
-  "https://spacekc.onrender.com",    // Deployed frontend URL on Render
+  "https://spacekc-ajy7.onrender.com",    // Deployed frontend URL on Render
 ];
 
 const io = new Server(server, {
