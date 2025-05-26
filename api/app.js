@@ -16,15 +16,27 @@ import prisma from "./lib/prisma.js";
 const app = express();
 // Middleware
 
+// Update your CORS middleware to this:
 app.use(
   cors({
     origin: [
-      "https://spacekc-ajy7.onrender.com", // Your frontend
-      "http://localhost:5173" // For local dev
+      "https://spacekc-ajy7.onrender.com",
+      "http://localhost:5173"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: [
+      "Content-Type", 
+      "Authorization",
+      "X-Requested-With",
+      "Accept"
     ],
     credentials: true,
+    optionsSuccessStatus: 200 // For legacy browser support
   })
 );
+
+// Handle OPTIONS requests (preflight) for all routes
+app.options('*', cors());
 
 app.use(express.json());
 app.use(cookieParser());
