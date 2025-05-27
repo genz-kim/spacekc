@@ -1,0 +1,26 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@theme {
+  --color-primary: #ffffff;
+  --color-secondary: #16243e;
+  --color-accent: #ec572a;
+  --font-display: 'Satoshi', sans-serif;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+body{
+  font-family: "Lato", sans-serif;
+  overflow: hidden;
+  color: var(--color-secondary);
+}
