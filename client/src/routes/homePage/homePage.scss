@@ -1,104 +1,104 @@
-@import "../../responsive.scss";
+// @import "../../responsive.scss";
 
-.homePage {
-  display: flex;
+// .homePage {
+//   display: flex;
 
-  overflow-y: scroll; // Enables scrolling
-  scrollbar-width: none; // Firefox (initially hidden)
+//   overflow-y: scroll; // Enables scrolling
+//   scrollbar-width: none; // Firefox (initially hidden)
 
-  &::-webkit-scrollbar {
-    width: 8px;
-    transition: opacity 0.3s ease-in-out; // Smooth transition
-  }
+//   &::-webkit-scrollbar {
+//     width: 8px;
+//     transition: opacity 0.3s ease-in-out; // Smooth transition
+//   }
 
-  &::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-  }
+//   &::-webkit-scrollbar-thumb {
+//     background-color: rgba(0, 0, 0, 0.5);
+//     border-radius: 10px;
+//   }
 
-  &.hide-scrollbar::-webkit-scrollbar {
-    opacity: 0; // Hides scrollbar
-  }
+//   &.hide-scrollbar::-webkit-scrollbar {
+//     opacity: 0; // Hides scrollbar
+//   }
 
 
 
 
   
 
-  .textContainer {
-    flex: 3;
+//   .textContainer {
+//     flex: 3;
 
-    .wrapper {
-      padding-right: 100px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 50px;
-      height: 100%;
+//     .wrapper {
+//       padding-right: 100px;
+//       display: flex;
+//       flex-direction: column;
+//       justify-content: center;
+//       gap: 50px;
+//       height: 100%;
 
-      @include lg{
-        padding-right: 50px;
-      }
+//       @include lg{
+//         padding-right: 50px;
+//       }
 
-      @include md{
-        padding: 0;
-      }
+//       @include md{
+//         padding: 0;
+//       }
 
-      @include sm{
-        justify-content: flex-start;
-      }
+//       @include sm{
+//         justify-content: flex-start;
+//       }
 
-      .title {
-        font-size: 64px;
+//       .title {
+//         font-size: 64px;
 
-        @include lg {
-          font-size: 48px;
-        }
-      }
+//         @include lg {
+//           font-size: 48px;
+//         }
+//       }
 
-      .boxes {
-        display: flex;
-        justify-content: space-between;
+//       .boxes {
+//         display: flex;
+//         justify-content: space-between;
 
-        @include sm {
-          display: none;
-        }
+//         @include sm {
+//           display: none;
+//         }
 
-        h1 {
-          font-size: 36px;
+//         h1 {
+//           font-size: 36px;
 
-          @include lg {
-            font-size: 32px;
-          }
-        }
+//           @include lg {
+//             font-size: 32px;
+//           }
+//         }
 
-        h2 {
-          font-size: 20px;
-          font-weight: 300;
-        }
-      }
-    }
-  }
+//         h2 {
+//           font-size: 20px;
+//           font-weight: 300;
+//         }
+//       }
+//     }
+//   }
 
-  .imgContainer {
-    flex: 2;
-    background-color: #fcf5f3;
-    position: relative;
-    display: flex;
-    align-items: center;
+//   .imgContainer {
+//     flex: 2;
+//     background-color: #fcf5f3;
+//     position: relative;
+//     display: flex;
+//     align-items: center;
 
-    @include md {
-      display: none;
-    }
+//     @include md {
+//       display: none;
+//     }
 
-    img {
-      width: 115%;
-      position: absolute;
-      right: 0;
+//     img {
+//       width: 115%;
+//       position: absolute;
+//       right: 0;
 
-      @include lg {
-        width: 105%;
-      }
-    }
-  }
-}
+//       @include lg {
+//         width: 105%;
+//       }
+//     }
+//   }
+// }
