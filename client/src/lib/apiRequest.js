@@ -1,10 +1,10 @@
 import axios from "axios";
 
 const apiRequest = axios.create({
-  baseURL: process.env.NODE_ENV === 'production'
-    ? " https://homes-7oh9.onrender.com" // Match frontend URL
-    : "http://localhost:8000/api",
-  
+  baseURL:
+    import.meta.env.PROD
+      ? "https://homes-api-7oh9.onrender.com/api" // ✅ your actual backend API
+      : "http://localhost:8000/api",              // ✅ for local development
   withCredentials: true,
 });
 
