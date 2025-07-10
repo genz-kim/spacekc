@@ -56,19 +56,19 @@ function Footer() {
 					<div className="flex gap-2.5">
 						<a
 							href="#"
-							className="text-lg text-accent transition-colors duration-300"
+							className="text-lg transition-colors duration-300"
 						>
 							<FaFacebookF />
 						</a>
 						<a
 							href="#"
-							className="text-lg text-accent transition-colors duration-300"
+							className="text-lg transition-colors duration-300"
 						>
 							<FaTwitter />
 						</a>
 						<a
 							href="#"
-							className="text-lg text-accent transition-colors duration-300"
+							className="text-lg transition-colors duration-300"
 						>
 							<FaLinkedinIn />
 						</a>
@@ -76,7 +76,7 @@ function Footer() {
 							href="https://github.com/Evan-cell"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="text-lg text-accent transition-colors duration-300"
+							className="text-lg transition-colors duration-300"
 						>
 							<FaGithub />
 						</a>

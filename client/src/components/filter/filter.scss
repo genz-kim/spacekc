@@ -1,85 +1,85 @@
-.filter {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  position: relative; // Ensures dropdown is positioned correctly
+// .filter {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 10px;
+//   position: relative; // Ensures dropdown is positioned correctly
 
-  h1 {
-    font-weight: 300;
-    font-size: 24px;
-  }
+//   h1 {
+//     font-weight: 300;
+//     font-size: 24px;
+//   }
 
-  .item {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    position: relative; // Allows absolute positioning of dropdown
+//   .item {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 2px;
+//     position: relative; // Allows absolute positioning of dropdown
 
-    label {
-      font-size: 10px;
-    }
+//     label {
+//       font-size: 10px;
+//     }
 
-    input,
-    select {
-      width: 100px;
-      padding: 10px;
-      border: 1px solid #e0e0e0;
-      border-radius: 5px;
-      font-size: 14px;
-    }
-  }
+//     input,
+//     select {
+//       width: 100px;
+//       padding: 10px;
+//       border: 1px solid #e0e0e0;
+//       border-radius: 5px;
+//       font-size: 14px;
+//     }
+//   }
 
-  .top {
-    input {
-      width: 100%;
-    }
-  }
+//   .top {
+//     input {
+//       width: 100%;
+//     }
+//   }
 
-  .bottom {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
+//   .bottom {
+//     display: flex;
+//     justify-content: space-between;
+//     flex-wrap: wrap;
+//     gap: 20px;
 
-    button {
-      width: 100px;
-      padding: 10px;
-      border: none;
-      cursor: pointer;
-      background-color: #fece51;
+//     button {
+//       width: 100px;
+//       padding: 10px;
+//       border: none;
+//       cursor: pointer;
+//       background-color: #fece51;
 
-      img {
-        width: 24px;
-        height: 24px;
-      }
-    }
-  }
+//       img {
+//         width: 24px;
+//         height: 24px;
+//       }
+//     }
+//   }
 
-  // 🔥 Suggestions Dropdown Styling
-  .suggestions {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    max-height: 200px;
-    background: white;
-    border: 1px solid #ddd;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
-    z-index: 10;
-    list-style: none;
-    padding: 0;
-    margin-top: 5px;
-    border-radius: 5px;
+//   // 🔥 Suggestions Dropdown Styling
+//   .suggestions {
+//     position: absolute;
+//     top: 100%;
+//     left: 0;
+//     width: 100%;
+//     max-height: 200px;
+//     background: white;
+//     border: 1px solid #ddd;
+//     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+//     overflow-y: auto;
+//     z-index: 10;
+//     list-style: none;
+//     padding: 0;
+//     margin-top: 5px;
+//     border-radius: 5px;
 
-    li {
-      padding: 10px;
-      cursor: pointer;
-      transition: background 0.2s;
+//     li {
+//       padding: 10px;
+//       cursor: pointer;
+//       transition: background 0.2s;
 
-      &:hover {
-        background: #f1f1f1;
-      }
-    }
-  }
-}
+//       &:hover {
+//         background: #f1f1f1;
+//       }
+//     }
+//   }
+// }

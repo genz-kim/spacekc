@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import './filter.scss';
 import { useSearchParams } from 'react-router-dom';
 
 function Filter() {
@@ -64,13 +63,15 @@ function Filter() {
 	};
 
 	return (
-		<div className="filter">
-			<h1>
-				Search results for <b>{searchParams.get('city')}</b>
-			</h1>
-			<div className="top">
-				<div className="item">
-					<label htmlFor="city">Location</label>
+		<div className="p-4 w-full">
+			<div className="flex flex-col gap-2">
+				<div className="relative flex flex-col gap-1">
+					<label
+						htmlFor="city"
+						className="block text-sm font-medium text-gray-700"
+					>
+						Location
+					</label>
 					<input
 						type="text"
 						id="city"
@@ -79,14 +80,15 @@ function Filter() {
 						value={query.city}
 						onChange={handleChange}
 						autoComplete="off"
+						className="w-full h-9 px-2 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
 					/>
-					{/* 🔥 Suggestions Dropdown */}
 					{suggestions.length > 0 && (
-						<ul className="suggestions">
+						<ul className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto">
 							{suggestions.map((location, index) => (
 								<li
 									key={index}
 									onClick={() => handleSelect(location.name)}
+									className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm"
 								>
 									{location.name}
 								</li>
@@ -94,76 +96,118 @@ function Filter() {
 						</ul>
 					)}
 				</div>
-			</div>
 
-			<div className="bottom">
-				<div className="item">
-					<label htmlFor="type">Type</label>
-					<select
-						name="type"
-						id="type"
-						onChange={handleChange}
-						defaultValue={query.type}
-					>
-						<option value="">any</option>
-						<option value="buy">Buy</option>
-						<option value="rent">Rent</option>
-					</select>
+				<div className="flex gap-2">
+					<div className="flex flex-col w-full gap-1">
+						<label
+							htmlFor="type"
+							className="block text-sm font-medium text-gray-700"
+						>
+							Type
+						</label>
+						<select
+							name="type"
+							id="type"
+							onChange={handleChange}
+							defaultValue={query.type}
+							className="w-full h-9 px-2 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+						>
+							<option value="">All</option>
+							<option value="buy">Buy</option>
+							<option value="rent">Rent</option>
+						</select>
+					</div>
+
+					<div className="flex flex-col w-full gap-1">
+						<label
+							htmlFor="property"
+							className="block text-sm font-medium text-gray-700"
+						>
+							Property
+						</label>
+						<select
+							name="property"
+							id="property"
+							onChange={handleChange}
+							defaultValue={query.property}
+							className="w-full h-9 px-2 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+						>
+							<option value="">All</option>
+							<option value="apartment">Apartment</option>
+							<option value="house">House</option>
+							<option value="condo">Condo</option>
+							<option value="land">Land</option>
+						</select>
+					</div>
+
+					<div className="flex flex-col w-full gap-1">
+						<label
+							htmlFor="minPrice"
+							className="block text-sm font-medium text-gray-700"
+						>
+							Min Price
+						</label>
+						<input
+							type="number"
+							id="minPrice"
+							name="minPrice"
+							placeholder="All"
+							onChange={handleChange}
+							defaultValue={query.minPrice}
+							className="w-full h-9 px-2 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+						/>
+					</div>
+
+					<div className="flex flex-col w-full gap-1">
+						<label
+							htmlFor="maxPrice"
+							className="block text-sm font-medium text-gray-700"
+						>
+							Max Price
+						</label>
+						<input
+							type="text"
+							id="maxPrice"
+							name="maxPrice"
+							placeholder="All"
+							onChange={handleChange}
+							defaultValue={query.maxPrice}
+							className="w-full h-9 px-2 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+						/>
+					</div>
+
+					<div className="flex flex-col w-full gap-1">
+						<label
+							htmlFor="bedroom"
+							className="block text-sm font-medium text-gray-700"
+						>
+							Bedroom
+						</label>
+						<input
+							type="text"
+							id="bedroom"
+							name="bedroom"
+							placeholder="All"
+							onChange={handleChange}
+							defaultValue={query.bedroom}
+							className="w-full h-9 px-2 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+						/>
+					</div>
+
+					<div className="flex items-end">
+						<button
+							onClick={handleFilter}
+							className="bg-accent text-white px-6 py-1.5 rounded-md hover:bg-accent/90 transition-colors flex items-center justify-center gap-2 cursor-pointer"
+						>
+							<img
+								src="/search.png"
+								alt="Search"
+								className="w-4 h-4"
+							/>
+							<span>Search</span>
+						</button>
+					</div>
 				</div>
-				<div className="item">
-					<label htmlFor="property">Property</label>
-					<select
-						name="property"
-						id="property"
-						onChange={handleChange}
-						defaultValue={query.property}
-					>
-						<option value="">any</option>
-						<option value="apartment">Apartment</option>
-						<option value="house">House</option>
-						<option value="condo">Condo</option>
-						<option value="land">Land</option>
-					</select>
-				</div>
-				<div className="item">
-					<label htmlFor="minPrice">Min Price</label>
-					<input
-						type="number"
-						id="minPrice"
-						name="minPrice"
-						placeholder="any"
-						onChange={handleChange}
-						defaultValue={query.minPrice}
-					/>
-				</div>
-				<div className="item">
-					<label htmlFor="maxPrice">Max Price</label>
-					<input
-						type="text"
-						id="maxPrice"
-						name="maxPrice"
-						placeholder="any"
-						onChange={handleChange}
-						defaultValue={query.maxPrice}
-					/>
-				</div>
-				<div className="item">
-					<label htmlFor="bedroom">Bedroom</label>
-					<input
-						type="text"
-						id="bedroom"
-						name="bedroom"
-						placeholder="any"
-						onChange={handleChange}
-						defaultValue={query.bedroom}
-					/>
-				</div>
-				<button onClick={handleFilter}>
-					<img
-						src="/search.png"
-						alt=""
-					/>
-				</button>
 			</div>
 		</div>
 	);

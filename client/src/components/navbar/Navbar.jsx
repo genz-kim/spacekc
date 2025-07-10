@@ -34,25 +34,25 @@ function Navbar() {
 					to="/list"
 					className="hover:text-accent"
 				>
-					Houses
+					Explore
+				</Link>
+				<Link
+					to="/about"
+					className="hover:text-accent"
+				>
+					List Your Space
+				</Link>
+				<Link
+					to="/contact"
+					className="hover:text-accent"
+				>
+					Pricing
 				</Link>
 				<Link
 					to="/"
 					className="hover:text-accent"
 				>
-					About
-				</Link>
-				<Link
-					to="/"
-					className="hover:text-accent"
-				>
-					Contact
-				</Link>
-				<Link
-					to="/"
-					className="hover:text-accent"
-				>
-					Agents
+					Agent Hub
 				</Link>
 			</div>
 			<div className="">
