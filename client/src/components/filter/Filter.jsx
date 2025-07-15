@@ -1,74 +1,28 @@
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import MobileFilter from './MobileFilter';
 
-function Filter() {
-	const [searchParams, setSearchParams] = useSearchParams();
-	const [query, setQuery] = useState({
-		type: searchParams.get('type') || '',
-		city: searchParams.get('city') || '',
-		property: searchParams.get('property') || '',
-		minPrice: searchParams.get('minPrice') || '',
-		maxPrice: searchParams.get('maxPrice') || '',
-		bedroom: searchParams.get('bedroom') || '',
-	});
-
-	const [suggestions, setSuggestions] = useState([]);
-
-	// 🔥 Fetch location suggestions for Kenya (Counties & Sub-Counties)
-	const fetchSuggestions = async (value) => {
-		try {
-			const response = await fetch(
-				`https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=10&q=${value}, Kenya`
-			);
-
-			const data = await response.json();
-
-			if (!Array.isArray(data)) {
-				console.error('Invalid API response:', data);
-				return;
-			}
-
-			// Extract proper names for display
-			const formattedSuggestions = data.map((place) => ({
-				name: place.display_name, // Shows full location name
-			}));
-
-			setSuggestions(formattedSuggestions);
-		} catch (error) {
-			console.error('Error fetching location suggestions:', error);
-		}
-	};
-
-	// 🔥 Handle input change
-	const handleChange = (e) => {
-		const { name, value } = e.target;
-		setQuery((prev) => ({ ...prev, [name]: value }));
-
-		// Fetch suggestions when user types at least 2 characters
-		if (name === 'city' && value.length >= 2) {
-			fetchSuggestions(value);
-		} else {
-			setSuggestions([]); // Clear suggestions when input is empty
-		}
-	};
-
-	// 🔥 Handle selecting a suggestion
-	const handleSelect = (location) => {
-		setQuery((prev) => ({ ...prev, city: location }));
-		setSuggestions([]); // Hide suggestions after selecting
-	};
-
-	const handleFilter = () => {
-		setSearchParams(query);
-	};
-
+function Filter({
+	query,
+	suggestions,
+	showMoreFilters,
+	setShowMoreFilters,
+	handleChange,
+	handleSelect,
+	handleFilter,
+}) {
 	return (
-		<div className="w-full py-4 flex flex-col gap-2">
-			<h2 className="text-lg md:text-2xl text-secondary pl-1">
-				Search Properties to Rent
-			</h2>
-			<div className="bg-white rounded-lg shadow-md p-5 w-full flex-col flex gap-4">
-				{/* First row: Location (half), Type, Property */}
+		<>
+			{/* Mobile: Use MobileFilter */}
+			<MobileFilter
+				query={query}
+				suggestions={suggestions}
+				showMoreFilters={showMoreFilters}
+				setShowMoreFilters={setShowMoreFilters}
+				handleChange={handleChange}
+				handleSelect={handleSelect}
+				handleFilter={handleFilter}
+			/>
+			{/* Desktop/Tablet: Show all filters as before */}
+			<div className="hidden md:flex bg-white rounded-lg shadow-md p-2 md:p-5 w-full flex-col gap-2">
 				<div className="flex flex-col md:flex-row gap-3 w-full">
 					<div className="flex flex-col flex-2 gap-1">
 						<label
@@ -231,7 +185,7 @@ function Filter() {
 					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 }
 
