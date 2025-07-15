@@ -3,6 +3,7 @@ import Card from '../../components/card/Card';
 import { Await, useLoaderData } from 'react-router-dom';
 import { Suspense } from 'react';
 import Testimonials from '../../components/testimonials/Testimonials';
+import Pricing from '../../components/pricing/Pricing';
 
 function HomePage() {
 	const data = useLoaderData();
@@ -38,6 +39,7 @@ function HomePage() {
 				</Suspense>
 			</div>
 			<Testimonials />
+			<Pricing />
 		</div>
 	);
 }
