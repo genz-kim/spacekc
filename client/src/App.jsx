@@ -25,6 +25,7 @@ function App() {
 				{
 					path: '/',
 					element: <HomePage />,
+					loader: listPageLoader,
 				},
 				{
 					path: '/list',

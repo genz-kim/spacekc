@@ -31,7 +31,7 @@ function Navbar() {
 			</Link>
 			<div className="flex gap-5">
 				<Link
-					to="/list"
+					to="/"
 					className="hover:text-accent"
 				>
 					Explore

@@ -1,30 +1,43 @@
-import { useEffect, useState } from "react";
-import SearchBar from '../../components/searchBar/SearchBar';
+import Filter from '../../components/filter/Filter';
+import Card from '../../components/card/Card';
+import { Await, useLoaderData } from 'react-router-dom';
+import { Suspense } from 'react';
+import Testimonials from '../../components/testimonials/Testimonials';
 
 function HomePage() {
-	const [hideScrollbar, setHideScrollbar] = useState(true);
-
-	useEffect(() => {
-		let timeout;
-
-		const handleScroll = () => {
-			setHideScrollbar(false); // Show scrollbar when scrolling
-			clearTimeout(timeout);
-			timeout = setTimeout(() => {
-				setHideScrollbar(true); // Hide scrollbar after 1.5s of inactivity
-			}, 1500);
-		};
-
-		window.addEventListener('scroll', handleScroll);
-		return () => {
-			window.removeEventListener('scroll', handleScroll);
-			clearTimeout(timeout);
-		};
-	}, []);
+	const data = useLoaderData();
+	console.log('data', data);
 
 	return (
-		<div className={`homePage ${hideScrollbar ? 'hide-scrollbar' : ''}`}>
-			<SearchBar />
+		<div className="homePage pb-7">
+			<Filter />
+			<div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+				<Suspense fallback={<p>Loading...</p>}>
+					<Await
+						resolve={data.postResponse}
+						errorElement={<p>Error loading posts!</p>}
+					>
+						{(postResponse) => {
+							console.log('postResponse:', postResponse); // Debugging
+							const posts = Array.isArray(postResponse)
+								? postResponse
+								: postResponse?.data;
+
+							if (!Array.isArray(posts)) {
+								return <p>No posts available.</p>;
+							}
+
+							return posts.map((post) => (
+								<Card
+									key={post.id}
+									item={post}
+								/>
+							));
+						}}
+					</Await>
+				</Suspense>
+			</div>
+			<Testimonials />
 		</div>
 	);
 }

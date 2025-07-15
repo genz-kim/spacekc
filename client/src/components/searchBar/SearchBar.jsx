@@ -5,7 +5,7 @@ const types = ['buy', 'rent'];
 
 function SearchBar() {
 	const [query, setQuery] = useState({
-		type: 'buy',
+		type: 'rent',
 		city: '',
 		minPrice: 0,
 		maxPrice: 0,
@@ -54,24 +54,6 @@ function SearchBar() {
 
 	return (
 		<div className="w-full py-4 flex flex-col gap-2">
-			{/* Pills for Buy/Rent */}
-			<div className="flex justify-center gap-2 mb-10">
-				{types.map((type) => (
-					<button
-						key={type}
-						onClick={() => setQuery((prev) => ({ ...prev, type }))}
-						className={`px-4 py-1 rounded-full text-sm font-medium transition-all duration-200
-							${
-								query.type === type
-									? 'bg-accent text-white shadow-md'
-									: 'bg-gray-300 text-secondary hover:bg-gray-200'
-							}`}
-					>
-						{type.charAt(0).toUpperCase() + type.slice(1)}
-					</button>
-				))}
-			</div>
-
 			<h2 className="text-lg md:text-2xl text-secondary pl-1">
 				Search Properties to{' '}
 				{query.type.charAt(0).toUpperCase() + query.type.slice(1)}
