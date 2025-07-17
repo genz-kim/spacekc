@@ -8,123 +8,131 @@ import { AuthContext } from "../../context/AuthContext";
 import { SocketContext } from "../../context/SocketContext";
 import apiRequest from "../../lib/apiRequest";
 import { useNotificationStore } from "../../lib/notificationStore";
+import AgentSection from '../../components/property-page/AgentSection';
 
 function SinglePage() {
-  const post = useLoaderData();
-  const { currentUser } = useContext(AuthContext);
-  const [saved, setSaved] = useState(post?.isSaved || false); // Default to false if post is not available
-  const { socket } = useContext(SocketContext);
-  const [chat, setChat] = useState(null);
-  const navigate = useNavigate();
-  const recieverID = post?.userId; // Optional chaining to prevent errors when currentUser or post is null
-  const decrease = useNotificationStore((state) => state.decrease);
+	const post = useLoaderData();
+	const { currentUser } = useContext(AuthContext);
+	const [saved, setSaved] = useState(post?.isSaved || false); // Default to false if post is not available
+	const { socket } = useContext(SocketContext);
+	const [chat, setChat] = useState(null);
+	const navigate = useNavigate();
+	const recieverID = post?.userId; // Optional chaining to prevent errors when currentUser or post is null
+	const decrease = useNotificationStore((state) => state.decrease);
 
-  // Remove the login check here for SinglePage
-  const checkAuthentication = () => {
-    return true; // Skip authentication for SinglePage
-  };
+	// Remove the login check here for SinglePage
+	const checkAuthentication = () => {
+		return true; // Skip authentication for SinglePage
+	};
 
-  useEffect(() => {
-    if (!post) return; // If post is not available, do not proceed
+	useEffect(() => {
+		if (!post) return; // If post is not available, do not proceed
 
-    const fetchChats = async () => {
-      try {
-        const res = await apiRequest.get("/chats");
-        const chats = res.data;
-        const existingChat = chats.find(
-          (chat) =>
-            chat.userIDs.includes(currentUser?.id) && chat.userIDs.includes(recieverID)
-        );
-        if (existingChat) {
-          setChat(existingChat);
-        } else {
-          const res = await apiRequest.post("/chats", {
-            userIDs: [currentUser?.id, recieverID],
-          });
-          setChat(res.data);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchChats();
-  }, [post, currentUser?.id, recieverID]);
+		const fetchChats = async () => {
+			try {
+				const res = await apiRequest.get('/chats');
+				const chats = res.data;
+				const existingChat = chats.find(
+					(chat) =>
+						chat.userIDs.includes(currentUser?.id) &&
+						chat.userIDs.includes(recieverID)
+				);
+				if (existingChat) {
+					setChat(existingChat);
+				} else {
+					const res = await apiRequest.post('/chats', {
+						userIDs: [currentUser?.id, recieverID],
+					});
+					setChat(res.data);
+				}
+			} catch (err) {
+				console.log(err);
+			}
+		};
+		fetchChats();
+	}, [post, currentUser?.id, recieverID]);
 
-  const handleChat = async () => {
-    if (!checkAuthentication()) return;
+	const handleChat = async () => {
+		if (!checkAuthentication()) return;
 
-    if (chat) {
-      handleOpenChat(chat.id, post?.user);
-    } else {
-      const res = await apiRequest.post("/chats", {
-        userIDs: [currentUser?.id, recieverID],
-      });
-      setChat(res.data);
-      handleOpenChat(res.data.id, post?.user);
-    }
-  };
+		if (chat) {
+			handleOpenChat(chat.id, post?.user);
+		} else {
+			const res = await apiRequest.post('/chats', {
+				userIDs: [currentUser?.id, recieverID],
+			});
+			setChat(res.data);
+			handleOpenChat(res.data.id, post?.user);
+		}
+	};
 
-  const handleOpenChat = async (id, receiver) => {
-    try {
-      const res = await apiRequest.get("/chats/" + id);
-      if (!res.data.seenBy.includes(currentUser.id)) {
-        decrease();
-      }
-      setChat({ ...res.data, receiver });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+	const handleOpenChat = async (id, receiver) => {
+		try {
+			const res = await apiRequest.get('/chats/' + id);
+			if (!res.data.seenBy.includes(currentUser.id)) {
+				decrease();
+			}
+			setChat({ ...res.data, receiver });
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
-  const handleSave = async () => {
-    if (!checkAuthentication()) return;
+	const handleSave = async () => {
+		if (!checkAuthentication()) return;
 
-    setSaved((prev) => !prev);
-    try {
-      await apiRequest.post("/users/save", { postId: post?.id });
-    } catch (err) {
-      console.log(err);
-      setSaved((prev) => !prev);
-    }
-  };
+		setSaved((prev) => !prev);
+		try {
+			await apiRequest.post('/users/save', { postId: post?.id });
+		} catch (err) {
+			console.log(err);
+			setSaved((prev) => !prev);
+		}
+	};
 
-  if (!post) {
-    return <p>Loading...</p>;
-  }
+	if (!post) {
+		return <p>Loading...</p>;
+	}
 
-  return (
-    <div className="singlePage">
-      <div className="details">
-        <div className="wrapper">
-          <Slider images={post?.images || []} />
-          <div className="info">
-            <div className="top">
-              <div className="post">
-                <h1>{post?.title}</h1>
-                <div className="address">
-                  <img src="/pin.png" alt="" />
-                  <span>{post?.address}</span>
-                </div>
-                <div className="price">ksh {post?.price}</div>
-              </div>
-              <div className="user">
-                <img src={post?.user?.avatar} alt="" />
-                <span>{post?.user?.username}</span>
-              </div>
-            </div>
-            <div
-              className="bottom"
-              dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(post?.postDetail?.desc),
-              }}
-            ></div>
-          </div>
-        </div>
-      </div>
-      <div className="features">
-        <div className="wrapper">
-          <p className="title">General</p>
-          <div className="listVertical">
+	return (
+		<div className="flex flex-col md:flex-row w-full gap-5 py-6">
+			<div className="flex flex-col w-3/4 gap-3">
+				<div className="">
+					<Slider images={post?.images || []} />
+					{/* <div className="info">
+						<div className="top">
+							<div className="post">
+								<h1>{post?.title}</h1>
+								<div className="address">
+									<img
+										src="/pin.png"
+										alt=""
+									/>
+									<span>{post?.address}</span>
+								</div>
+								<div className="price">ksh {post?.price}</div>
+							</div>
+							<div className="user">
+								<img
+									src={post?.user?.avatar}
+									alt=""
+								/>
+								<span>{post?.user?.username}</span>
+							</div>
+						</div>
+						<div
+							className="bottom"
+							dangerouslySetInnerHTML={{
+								__html: DOMPurify.sanitize(post?.postDetail?.desc),
+							}}
+						></div>
+					</div> */}
+				</div>
+			</div>
+
+			<div className="w-1/4">
+				<AgentSection post={post} />
+				{/* <div className="listVertical">
             <div className="feature">
               <img src="/utility.png" alt="" />
               <div className="featureText">
@@ -217,11 +225,10 @@ function SinglePage() {
               <img src="/save.png" alt="" />
               {saved ? "Place Saved" : "Save the Place"}
             </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+          </div> */}
+			</div>
+		</div>
+	);
 }
 
 export default SinglePage;
