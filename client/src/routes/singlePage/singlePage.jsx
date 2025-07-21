@@ -9,6 +9,7 @@ import { SocketContext } from "../../context/SocketContext";
 import apiRequest from "../../lib/apiRequest";
 import { useNotificationStore } from "../../lib/notificationStore";
 import AgentSection from '../../components/property-page/AgentSection';
+import PropertyDetails from '../../components/property-page/PropertyDetails';
 
 function SinglePage() {
 	const post = useLoaderData();
@@ -95,9 +96,9 @@ function SinglePage() {
 	}
 
 	return (
-		<div className="flex flex-col md:flex-row w-full gap-5 py-6">
-			<div className="flex flex-col w-3/4 gap-3">
-				<div className="">
+		<div className="flex flex-col w-full gap-5 py-6">
+			<div className="w-full flex flex-col md:flex-row gap-4">
+				<div className="w-full md:w-3/4">
 					<Slider images={post?.images || []} />
 					{/* <div className="info">
 						<div className="top">
@@ -128,10 +129,13 @@ function SinglePage() {
 						></div>
 					</div> */}
 				</div>
+				<div className="w-full md:w-1/4">
+					<AgentSection post={post} />
+				</div>
 			</div>
 
-			<div className="w-1/4">
-				<AgentSection post={post} />
+			<div className="">
+				<PropertyDetails post={post} />
 				{/* <div className="listVertical">
             <div className="feature">
               <img src="/utility.png" alt="" />
