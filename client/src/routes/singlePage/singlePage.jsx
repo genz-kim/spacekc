@@ -1,15 +1,14 @@
 import "./singlePage.scss";
-import Slider from "../../components/slider/Slider";
-import Map from "../../components/map/Map";
-import { useNavigate, useLoaderData } from "react-router-dom";
-import DOMPurify from "dompurify";
-import { useContext, useState, useEffect } from "react";
-import { AuthContext } from "../../context/AuthContext";
-import { SocketContext } from "../../context/SocketContext";
-import apiRequest from "../../lib/apiRequest";
-import { useNotificationStore } from "../../lib/notificationStore";
+import Slider from '../../components/slider/Slider';
+import { useNavigate, useLoaderData } from 'react-router-dom';
+import { useContext, useState, useEffect } from 'react';
+import { AuthContext } from '../../context/AuthContext';
+import { SocketContext } from '../../context/SocketContext';
+import apiRequest from '../../lib/apiRequest';
+import { useNotificationStore } from '../../lib/notificationStore';
 import AgentSection from '../../components/property-page/AgentSection';
 import PropertyDetails from '../../components/property-page/PropertyDetails';
+import SimilarProperties from '../../components/property-page/SimilarProperties';
 
 function SinglePage() {
 	const post = useLoaderData();
@@ -107,57 +106,14 @@ function SinglePage() {
 			</div>
 
 			<div className="">
-				<PropertyDetails post={post} />
-				{/*
-          <p className="title">Nearby Places</p>
-          <div className="listHorizontal">
-            <div className="feature">
-              <img src="/school.png" alt="" />
-              <div className="featureText">
-                <span>School</span>
-                <p>
-                  {post?.postDetail?.school > 999
-                    ? post?.postDetail?.school / 1000 + "km"
-                    : post?.postDetail?.school + "m"}{" "}
-                  away
-                </p>
-              </div>
-            </div>
-            <div className="feature">
-              <img src="/pet.png" alt="" />
-              <div className="featureText">
-                <span>Bus Stop</span>
-                <p>{post?.postDetail?.bus}m away</p>
-              </div>
-            </div>
-            <div className="feature">
-              <img src="/fee.png" alt="" />
-              <div className="featureText">
-                <span>Restaurant</span>
-                <p>{post?.postDetail?.restaurant}m away</p>
-              </div>
-            </div>
-          </div>
-          <p className="title">Location</p>
-          <div className="mapContainer">
-            <Map items={[post]} />
-          </div>
-          <div className="buttons">
-            <button onClick={handleChat}>
-              <img src="/chat.png" alt="" />
-              Send a Message
-            </button>
-            <button
-              onClick={handleSave}
-              style={{
-                backgroundColor: saved ? "#fece51" : "white",
-              }}
-            >
-              <img src="/save.png" alt="" />
-              {saved ? "Place Saved" : "Save the Place"}
-            </button>
-          </div> */}
+				<PropertyDetails
+					post={post}
+					handleChat={handleChat}
+					handleSave={handleSave}
+					saved={saved}
+				/>
 			</div>
+			<SimilarProperties />
 		</div>
 	);
 }
