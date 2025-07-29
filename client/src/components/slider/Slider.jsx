@@ -62,7 +62,7 @@ function Slider({ images }) {
 					src={images[0]}
 					alt=""
 					onClick={() => setImageIndex(0)}
-					className="w-full max-h-72"
+					className="w-full max-h-80"
 				/>
 			</div>
 			<div className="smallImages">
