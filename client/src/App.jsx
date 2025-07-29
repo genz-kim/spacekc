@@ -1,5 +1,4 @@
-import HomePage from "./routes/homePage/homePage";
-import About from './routes/about/About';
+import HomePage from './routes/homePage/homePage';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ListPage from './routes/listPage/listPage';
 import { Layout, RequireAuth } from './routes/layout/layout';
@@ -14,7 +13,6 @@ import {
 	profilePageLoader,
 	singlePageLoader,
 } from './lib/loaders';
-import Contact from './routes/contact/Contact';
 
 function App() {
 	const router = createBrowserRouter([
@@ -31,14 +29,6 @@ function App() {
 					path: '/list',
 					element: <ListPage />,
 					loader: listPageLoader,
-				},
-				{
-					path: '/about',
-					element: <About />,
-				},
-				{
-					path: '/contact',
-					element: <Contact />,
 				},
 				{
 					path: '/:id',
