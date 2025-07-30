@@ -13,6 +13,7 @@ import {
 	profilePageLoader,
 	singlePageLoader,
 } from './lib/loaders';
+import Dashboard from './routes/dashboard/dashboard';
 
 function App() {
 	const router = createBrowserRouter([
@@ -24,6 +25,10 @@ function App() {
 					path: '/',
 					element: <HomePage />,
 					loader: listPageLoader,
+				},
+				{
+					path: '/dashboard',
+					element: <Dashboard />,
 				},
 				{
 					path: '/list',
