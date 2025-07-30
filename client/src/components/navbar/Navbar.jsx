@@ -39,7 +39,7 @@ function Navbar() {
 					Explore
 				</Link>
 				<Link
-					to="/about"
+					to="/dashboard"
 					className="hover:text-accent"
 				>
 					List Your Space
@@ -51,7 +51,7 @@ function Navbar() {
 					Pricing
 				</a>
 				<Link
-					to="/"
+					to="/dashboard"
 					className="hover:text-accent"
 				>
 					Agent Hub
