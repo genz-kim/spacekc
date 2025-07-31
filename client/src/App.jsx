@@ -27,7 +27,7 @@ function App() {
 					loader: listPageLoader,
 				},
 				{
-					path: '/dashboard',
+					path: '/dashboard', //!TODO Dashboard should be a protected route
 					element: <Dashboard />,
 				},
 				{
