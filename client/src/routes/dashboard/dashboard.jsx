@@ -6,7 +6,7 @@ const Dashboard = () => {
 			{/* Left Navbar */}
 			<div className="w-64 bg-white shadow-lg p-6 flex flex-col">
 				<div className="text-2xl font-bold mb-8 text-blue-600">AgentPro</div>
-				<nav className="flex flex-col gap-4 text-gray-700">
+				<nav className="flex flex-col gap-4 text-white bg-secondary">
 					<a
 						href="#"
 						className="hover:text-blue-500"
